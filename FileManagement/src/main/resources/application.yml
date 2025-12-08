@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: filemanagement
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      file-size-threshold: 2MB
+
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    time-zone: CTE
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate.jdbc.time_zone: CTE
+    hibernate:
+      ddl-auto: none
+
+management:
+  endpoints:
+     web:
+       exposure:
+         include: health,info,metrics
+  endpoint:
+     health:
+       show-details: when_authorized
+
+file:
+  storage:
+    base-path: ./storage
+    retention-days: 30
+    allowed-content-types:
+      - application/pdf
+      - image/png
+      - image/jpeg
+      - text/plain
