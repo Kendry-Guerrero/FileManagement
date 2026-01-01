@@ -49,7 +49,7 @@ public class FileService {
     public void softDelete(UUID id) throws IOException{
         FileEntry e = getOrThrow(id);
 
-        if(!e.getDeleted()) return;
+        if(e.getDeleted()) return;
         String toKey = storage.buildKey(id, true); //bin path
         storage.move(e.getStorageKey(),toKey);
 

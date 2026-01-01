@@ -1,6 +1,7 @@
 package com.Ken.filemanagement.web;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.ServletException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -38,8 +39,15 @@ public class ApiExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Map<String, Object> handleGeneric(Exception ex){
+        ex.printStackTrace();
         return Map.of("code", "INTERNAL_ERROR", "message", "Unexpected error");
 
+    }
+
+    @ExceptionHandler(ServletException.class)
+    public void handleServletException(ServletException ex) throws ServletException {
+        throw ex;
+        //Letting Spring handle servlet error like a H2 console
     }
 }
 

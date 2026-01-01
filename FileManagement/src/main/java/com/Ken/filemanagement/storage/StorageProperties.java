@@ -2,6 +2,7 @@ package com.Ken.filemanagement.storage;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+
 import java.util.List;
 
 @ConfigurationProperties(prefix = "file.storage")
@@ -10,6 +11,11 @@ public class StorageProperties {
     private int retentionDays = 30;
     private List<String> allowedContentTypes = List.of();
 
+    public StorageProperties(String basePath, int retentionDays, List<String>allowedContentTypes){
+        this.basePath = basePath;
+        this.retentionDays= retentionDays;
+        this.allowedContentTypes=allowedContentTypes;
+    }
 
 
 

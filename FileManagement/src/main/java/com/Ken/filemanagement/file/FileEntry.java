@@ -11,24 +11,23 @@ import java.util.UUID;
 @Entity
 @Table(name="file_entries",
 indexes = {
-        @Index(name = "idx_file_uploaded_at", columnList = "uploadedAt"),
-        @Index(name = "idx_file_size_bytes", columnList = "sizeBytes"),
+        @Index(name = "idx_file_uploaded_at", columnList = "uploaded_at"),
+        @Index(name = "idx_file_size_bytes", columnList = "size_bytes"),
         @Index(name = "idx_file_deleted", columnList = "deleted"),
-        @Index(name = "idx_file_original_name", columnList= "originalName")
+        @Index(name = "idx_file_original_name", columnList= "original_name")
 })
 public class FileEntry {
 
     @Id
-    @Column(columnDefinition = "uuid", nullable=false, updatable=false)
     public UUID id;
 
-    @Column(name = "original_name", nullable= false, length = 255)
+    @Column(name = "original_name", nullable= false, length = 355)
     public String originalName;
 
-    @Column(name= "storage_key", nullable = false, unique = true, length = 300)
+    @Column(name= "content_type", nullable = false, length = 1000)
     public String contentType;
 
-    @Column(name = "size_bytes, nullable = false")
+    @Column(name = "size_bytes", nullable = false)
     public  long sizeBytes;
 
     @Column(name = "storage_key", nullable = false)

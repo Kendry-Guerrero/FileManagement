@@ -1,6 +1,8 @@
 spring:
   application:
     name: filemanagement
+  profiles:
+    active: dev
 
   servlet:
     multipart:
@@ -9,14 +11,15 @@ spring:
       file-size-threshold: 2MB
 
   jackson:
+    write-dates-as-timestamps: false
+    time-zone: UTC
     serialization:
-      WRITE_DATES_AS_TIMESTAMPS: false
-    time-zone: CTE
+      INDENT_OUTPUT: true
 
   jpa:
     open-in-view: false
     properties:
-      hibernate.jdbc.time_zone: CTE
+      hibernate.jdbc.time_zone: UTC
     hibernate:
       ddl-auto: none
 

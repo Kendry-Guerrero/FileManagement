@@ -31,6 +31,7 @@ public class FileController {
 
     @GetMapping
     public Page<FileEntry> list(Pageable pageable){
+
         return fileService.list(pageable);
     }
 
@@ -48,5 +49,14 @@ public class FileController {
     public ResponseEntity<FileEntry> restore(@PathVariable UUID id) throws IOException{
         fileService.restore(id);
         return ResponseEntity.ok(fileService.getOrThrow(id));
+    }
+
+    //for debugging purposes
+    @RestController
+    public class DebugController{
+        @GetMapping("/debug")
+        public String debug(){
+            return "app is running";
+        }
     }
 }
